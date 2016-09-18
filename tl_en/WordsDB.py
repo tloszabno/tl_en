@@ -8,6 +8,7 @@ class WordsDB(object):
             self.file_name = file_name
             self.words = []
             self.refresh_cache()
+            self.last_result = ""
             schedule.every(config.WORDS_CACHE_REFRESH_INTERVAL_H).hours.do(self.refresh_cache)
 
     def refresh_cache(self):
@@ -15,4 +16,10 @@ class WordsDB(object):
         print "Cache refreshed, got: " + str(self.words)
 
     def get_random_word(self):
-        return random.choice(self.words)
+        if len(self.words) == 0:
+            return None
+        while True:
+            result = random.choice(self.words)
+            if result != self.last_result:
+                self.last_result = result
+                return result

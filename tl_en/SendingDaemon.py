@@ -14,4 +14,5 @@ class SendingDaemon(object):
 
     def job(self):
         word = self.wordsDB.get_random_word()
-        map( lambda listener : listener(word), self.listeners )
+        if word:
+            map( lambda listener : listener(word), self.listeners )
