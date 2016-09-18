@@ -1,11 +1,12 @@
 import gi
 gi.require_version('Notify', '0.7')
-from gi.repository import Notify
+from gi.repository import Notify, GdkPixbuf
 
 import time
 import config
 from threading import Thread
 from Queue import Queue
+
 
 class NotificationsFasade(object):
     def __init__(self):
@@ -25,15 +26,18 @@ class NotificationsFasade(object):
         self.notifications.put(n)
 
     def __notify_word__(self, word):
-        print "notify " + str(word)
-        n = Notify.Notification.new(
-            word[0],
-            notBlankOrNone("\n".join([word[1], word[2]])),
-            "dialog-information" # dialog-warn, dialog-error
-        )
-        n.show()
+        formatted = format_word(word)
+        notif = Notify.Notification.new(*formatted)
+        image = GdkPixbuf.Pixbuf.new_from_file(config.DICTIONARY_ICON_PATH)
+        notif.set_icon_from_pixbuf(image)
+        notif.set_image_from_pixbuf(image)
+
+        notif.show()
         time.sleep(config.SHOW_NOTIFICATION_TIME_SEC)
-        n.close()
+        notif.close()
+
+def format_word(word):
+    return '{0: <40}'.format(word[0]), notBlankOrNone("\n".join([word[1], word[2]]))
 
 def notBlankOrNone(w):
     return w if len(w) > 0 else None

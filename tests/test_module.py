@@ -9,7 +9,7 @@ from tl_en import parser
 from hamcrest import *
 import gi
 gi.require_version('Notify', '0.7')
-from gi.repository import Notify
+from gi.repository import Notify, GdkPixbuf
 
 
 class TestModule(unittest.TestCase):
