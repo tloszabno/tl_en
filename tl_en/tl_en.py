@@ -7,9 +7,6 @@ import schedule
 import time
 import notifications
 
-def listener(w):
-    print w
-
 def run_daemon():
     notifs = notifications.NotificationsFasade()
     db = WordsDB(config.WORDS_DICTIONARY_PATH)
