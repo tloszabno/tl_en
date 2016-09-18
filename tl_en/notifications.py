@@ -5,16 +5,24 @@ from gi.repository import Notify
 import time
 import config
 from threading import Thread
-
+from Queue import Queue
 
 class NotificationsFasade(object):
     def __init__(self):
         Notify.init("TL-EN")
+        self.notifications = Queue()
+        self.thread = Thread(target=self.__wait_for_notifications__)
+        self.thread.daemon = True
+        self.thread.start()
+
+    def __wait_for_notifications__(self):
+        while True:
+            n = self.notifications.get()
+            n()
 
     def notify(self, word):
-        t = Thread(target=self.__notify_word__, args=(word,))
-        t.daemon = True
-        t.start()
+        n = lambda: self.__notify_word__(word)
+        self.notifications.put(n)
 
     def __notify_word__(self, word):
         print "notify " + str(word)
@@ -24,9 +32,7 @@ class NotificationsFasade(object):
             "dialog-information" # dialog-warn, dialog-error
         )
         n.show()
-
         time.sleep(config.SHOW_NOTIFICATION_TIME_SEC)
-
         n.close()
 
 def notBlankOrNone(w):

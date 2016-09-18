@@ -5,6 +5,9 @@ init:
 test:
 	nosetests
 
+run:
+	python tl_en/tl_en.py
+
 clean:
 	find . -name "*.pyc" -exec rm -rf {} \;
 
