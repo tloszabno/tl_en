@@ -1,0 +1,4 @@
+house - dom - be in the house
+
+- krzesło - should not be parsed
+light - 

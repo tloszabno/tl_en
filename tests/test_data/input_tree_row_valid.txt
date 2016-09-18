@@ -1,0 +1,3 @@
+house - dom - be in the house
+chair - krzesło - the chair is in the room - krzesło jest w pokoju
+light - światło
