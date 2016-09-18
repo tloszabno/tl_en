@@ -1,0 +1,4 @@
+SENDING_INTERVAL_MIN = 0.1
+WORDS_CACHE_REFRESH_INTERVAL_H = 0.0002
+
+WORDS_DICTIONARY_PATH = "../tests/test_data/input_tree_row_valid.txt"
