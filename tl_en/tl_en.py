@@ -17,7 +17,7 @@ def run_daemon():
 
     while True:
         schedule.run_pending()
-        time.sleep(1)
+        time.sleep(config.DAEMON_MAIN_LOOP_SLEEP_TIME_SEC)
 
 def main():
     #TODO client, options etc
