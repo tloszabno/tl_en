@@ -7,13 +7,14 @@ import config
 import os
 import logging
 
+
 class TestParser(unittest.TestCase):
     def test_should_parse_valid_file_with_one_line(self):
         # given
         input_file = config.TEST_DATA_PATH + os.sep + "input_one_row_valid.txt"
         # when
         result = parser.parse_file(input_file)
-        #then
+        # then
         assert_that(result, has_length(1))
         assert_that(result[0][0], equal_to_ignoring_case("house"))
         assert_that(result[0][1], equal_to_ignoring_case("dom"))
@@ -24,7 +25,7 @@ class TestParser(unittest.TestCase):
         input_file = config.TEST_DATA_PATH + os.sep + "input_tree_row_valid.txt"
         # when
         result = parser.parse_file(input_file)
-        #then
+        # then
         assert_that(result, has_length(3))
 
         assert_that(result[0][0], equal_to_ignoring_case("house"))
@@ -43,7 +44,7 @@ class TestParser(unittest.TestCase):
         input_file = config.TEST_DATA_PATH + os.sep + "file_with_empty_places.txt"
         # when
         result = parser.parse_file(input_file)
-        #then
+        # then
         assert_that(result, has_length(2))
 
         assert_that(result[0][0], equal_to_ignoring_case("house"))

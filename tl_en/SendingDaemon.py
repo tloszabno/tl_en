@@ -1,6 +1,7 @@
 import schedule
 import config
 
+
 class SendingDaemon(object):
     def __init__(self, wordsDB):
         self.wordsDB = wordsDB
@@ -15,4 +16,4 @@ class SendingDaemon(object):
     def job(self):
         word = self.wordsDB.get_random_word()
         if word:
-            map( lambda listener : listener(word), self.listeners )
+            map(lambda listener: listener(word), self.listeners)

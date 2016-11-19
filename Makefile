@@ -1,5 +1,8 @@
 
 init:
+	apt-get install python-gobject
+	apt-get install libnotify-bin
+	apt-get install libnotify-dev
 	pip install -r requirements.txt
 
 test:
