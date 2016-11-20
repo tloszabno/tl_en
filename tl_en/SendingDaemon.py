@@ -3,8 +3,8 @@ import config
 
 
 class SendingDaemon(object):
-    def __init__(self, wordsDB):
-        self.wordsDB = wordsDB
+    def __init__(self, supplier):
+        self.supplier = supplier
         self.listeners = []
 
     def register_listener(self, listener):
@@ -14,6 +14,6 @@ class SendingDaemon(object):
         schedule.every(config.SENDING_INTERVAL_MIN).minutes.do(self.job)
 
     def job(self):
-        word = self.wordsDB.get_random_word()
-        if word:
-            map(lambda listener: listener(word), self.listeners)
+        product = self.supplier.get()
+        if product:
+            map(lambda listener: listener(product), self.listeners)

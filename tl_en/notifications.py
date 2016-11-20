@@ -3,13 +3,25 @@ import config
 from threading import Thread
 from Queue import Queue
 import gi
+import utils
 gi.require_version('Notify', '0.7')
+
+
+class Notification(object):
+    def __init__(self, word_tuple):
+        if not word_tuple:
+            (self.header, self.description) = ("", "")
+            return
+        (self.header, self.description) = utils.head_and_tail_each_new_line(word_tuple)
+
+    def to_formatted_tuple(self):
+        return '{0: <30}'.format(self.header), self.description
 
 
 class NotificationsFasade(object):
     def __init__(self):
         from gi.repository import Notify
-        Notify.init("TL-EN")
+        Notify.init(config.MODULE_NAME)
         self.notifications = Queue()
         self.thread = Thread(target=self.__wait_for_notifications__)
         self.thread.daemon = True
@@ -17,29 +29,19 @@ class NotificationsFasade(object):
 
     def __wait_for_notifications__(self):
         while True:
-            n = self.notifications.get()
-            n()
+            notification = self.notifications.get()
+            notification()
 
     def notify(self, word):
         self.notifications.put(lambda: self.__notify_word__(word))
 
-    def __notify_word__(self, word):
+    def __notify_word__(self, notification):
         from gi.repository import Notify, GdkPixbuf
-        formatted = format_word(word)
-        notif = Notify.Notification.new(*formatted)
-        image = GdkPixbuf.Pixbuf.new_from_file(config.DICTIONARY_ICON_PATH)
+        notif = Notify.Notification.new(*notification.to_formatted_tuple())
+        image = GdkPixbuf.Pixbuf.new_from_file(config.NOTIFICATION_ICON_PATH)
         notif.set_icon_from_pixbuf(image)
         notif.set_image_from_pixbuf(image)
 
         notif.show()
         time.sleep(config.SHOW_NOTIFICATION_TIME_SEC)
         notif.close()
-
-
-def format_word(word):
-    definition = notBlankOrNone("\n".join([word[1], word[2]]))
-    return '{0: <40}'.format(word[0]), definition
-
-
-def notBlankOrNone(w):
-    return w if len(w) > 0 else None

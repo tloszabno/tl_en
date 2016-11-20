@@ -14,7 +14,7 @@ from gi.repository import Notify, GdkPixbuf
 class TestModule(unittest.TestCase):
     def testNotifications(self):
         Notify.init("Test notification")
-        Hello=Notify.Notification.new("Test notification", "Test ok", "dialog-information")
+        Hello= Notify.Notification.new("Test notification", "Test ok", "dialog-information")
         Hello.show()
         time.sleep(0.2)
         Hello.close()

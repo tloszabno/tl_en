@@ -9,7 +9,6 @@ class WordsDB(object):
             self.file_name = file_name
             self.words = []
             self.refresh_cache()
-            self.last_result = ""
             sched = schedule.every(config.WORDS_CACHE_REFRESH_INTERVAL_H).hours
             sched.do(self.refresh_cache)
 
@@ -17,11 +16,13 @@ class WordsDB(object):
         self.words = parser.parse_file(self.file_name)
         print "Cache refreshed, got: " + str(self.words)
 
-    def get_random_word(self):
-        if len(self.words) == 0:
-            return None
-        while True:
-            result = random.choice(self.words)
-            if result != self.last_result:
-                self.last_result = result
-                return result
+    def get_next_random_part(self, size):
+        if size > len(self.words):
+            return self.words[:]  # copy
+
+        start_idx = random.randint(0, len(self.words))
+        end_inx = start_idx + size
+        if end_inx < len(self.words):
+            return self.words[start_idx:end_inx + 1]
+        part = self.words[start_idx:]
+        return part + self.words[0:size-len(part)+1]
