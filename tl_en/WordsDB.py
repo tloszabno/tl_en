@@ -1,7 +1,5 @@
 import random
 import parser
-import schedule
-import config
 
 
 class WordsDB(object):
@@ -9,8 +7,6 @@ class WordsDB(object):
             self.file_name = file_name
             self.words = []
             self.refresh_cache()
-            sched = schedule.every(config.WORDS_CACHE_REFRESH_INTERVAL_H).hours
-            sched.do(self.refresh_cache)
 
     def refresh_cache(self):
         self.words = parser.parse_file(self.file_name)
