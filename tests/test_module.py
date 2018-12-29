@@ -3,8 +3,8 @@ Test used only to check if all necessary libs are available
 """
 import unittest
 import time
-from tl_en import tl_en
-from tl_en import parser
+from tlen import main
+from tlen import parser
 from hamcrest import *
 import gi
 gi.require_version('Notify', '0.7')

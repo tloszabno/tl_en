@@ -1,11 +1,11 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
-from tl_en.Sender import Sender
-from tl_en.WordsDB import WordsDB
-from tl_en.WordsService import WordsService
-import tl_en.SchedulerFasade as scheduler
-from tl_en import config
-from tl_en import notifications
+from Sender import Sender
+from WordsDB import WordsDB
+from WordsService import WordsService
+import SchedulerFasade as scheduler
+import config
+import notifications
 import time
 
 

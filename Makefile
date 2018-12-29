@@ -9,7 +9,7 @@ test:
 	nosetests
 
 run:
-	python2 tl_en/tl_en.py
+	python3 tlen/main.py
 
 clean:
 	find . -name "*.pyc" -exec rm -rf {} \;

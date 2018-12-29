@@ -5,7 +5,7 @@ import unittest
 
 from hamcrest import *
 
-from tl_en import parser
+from tlen import parser
 
 TEST_DATA_PATH = "tests/test_data"
 

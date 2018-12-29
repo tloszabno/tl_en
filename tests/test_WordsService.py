@@ -2,8 +2,8 @@ import unittest
 
 from hamcrest import *
 
-from tl_en.WordsService import WordsService
-from tl_en import notifications
+from tlen.WordsService import WordsService
+from tlen import notifications
 
 
 class DBDummy(object):

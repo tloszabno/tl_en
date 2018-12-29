@@ -1,5 +1,5 @@
-from tl_en import config
-from tl_en.notifications import Notification
+import config
+from notifications import Notification
 from threading import Lock
 import random
 

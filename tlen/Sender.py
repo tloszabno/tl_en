@@ -9,4 +9,5 @@ class Sender(object):
     def send(self):
         product = self.supplier.get()
         if product:
-            map(lambda listener: listener(product), self.listeners)
+            for listener in self.listeners:
+                listener(product)

@@ -2,7 +2,7 @@
 WORDS_DICTIONARY_PATH = "/home/tomek/Documents/angielski_slowka.txt"
 
 # Show notification config
-SENDING_INTERVAL_MIN = 1
+SENDING_INTERVAL_MIN = 0.1
 SHOW_NOTIFICATION_TIME_SEC = 20
 
 # Groups config
@@ -13,4 +13,4 @@ INTERVAL_TO_REFRESH_GROUP_WORDS_MIN = 40
 WORDS_CACHE_REFRESH_INTERVAL_H = 1
 MAIN_LOOP_SLEEP_TIME_SEC = 10
 NOTIFICATION_ICON_PATH = "resources/dictionary-icon.png"
-MODULE_NAME = "TL-EN"
+MODULE_NAME = "TLEN"

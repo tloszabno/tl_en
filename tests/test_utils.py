@@ -1,6 +1,6 @@
 import unittest
 from hamcrest import *
-from tl_en import utils
+from tlen import utils
 
 
 class Test_head_and_tail_each_new_line(unittest.TestCase):
