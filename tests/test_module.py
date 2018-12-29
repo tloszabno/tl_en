@@ -16,5 +16,5 @@ class TestModule(unittest.TestCase):
         Notify.init("Test notification")
         Hello= Notify.Notification.new("Test notification", "Test ok", "dialog-information")
         Hello.show()
-        time.sleep(0.2)
+        time.sleep(1)
         Hello.close()

@@ -1,9 +1,10 @@
 import time
-import config
+from tl_en import config
 from threading import Thread
-from Queue import Queue
+from multiprocessing import Queue
 import gi
-import utils
+from tl_en import utils
+
 gi.require_version('Notify', '0.7')
 
 

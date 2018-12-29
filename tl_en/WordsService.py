@@ -1,5 +1,5 @@
-import config
-from notifications import Notification
+from tl_en import config
+from tl_en.notifications import Notification
 from threading import Lock
 import random
 
@@ -32,4 +32,4 @@ class WordsService(object):
             part = (self.words_db
                     .get_next_random_part(config.NUMBER_OF_WORDS_IN_GROUP))
             self.words_to_notify = [Notification(n) for n in part]
-            print "Group updated to: " + str(part)
+            print("Group updated to: " + str(part))

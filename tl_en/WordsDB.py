@@ -10,7 +10,7 @@ class WordsDB(object):
 
     def refresh_cache(self):
         self.words = parser.parse_file(self.file_name)
-        print "Cache refreshed, got: " + str(self.words)
+        print("Cache refreshed, got: " + str(self.words))
 
     def get_next_random_part(self, size):
         if size > len(self.words):

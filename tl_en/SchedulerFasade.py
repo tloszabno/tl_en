@@ -1,5 +1,5 @@
 import schedule
-import config
+from tl_en import config
 
 
 def tick():

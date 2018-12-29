@@ -1,8 +1,8 @@
 # User dictionary config
-WORDS_DICTIONARY_PATH = "/home/tomek/Dokumenty/angielski_slowka.txt"
+WORDS_DICTIONARY_PATH = "/home/tomek/Documents/angielski_slowka.txt"
 
 # Show notification config
-SENDING_INTERVAL_MIN = 2
+SENDING_INTERVAL_MIN = 1
 SHOW_NOTIFICATION_TIME_SEC = 20
 
 # Groups config
